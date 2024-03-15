@@ -1,0 +1,7 @@
+WebApi/obj
+WebApi/Properties
+WebApi/appsettings.json
+WebApi/appsettings.Development.json
+WebApi/WebApi.csproj
+WebApi/WebApi.http
+WebApi/bin/Debug
