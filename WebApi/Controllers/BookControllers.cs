@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApi.BookOperations.CreateBook;
+using WebApi.BookOperations.DeleteBook;
 using WebApi.BookOperations.GetBook;
+using WebApi.BookOperations.GetBookDetail;
+using WebApi.BookOperations.UpdateBook;
 using WebApi.DBoperitions;
 
 namespace WebApi.Controllers;
@@ -25,9 +28,20 @@ public class BookController:ControllerBase
 
 
     [HttpGet("{id}")]
-    public Book GetById(int id){
-       var bookList =  _context.Books.SingleOrDefault(p => p.Id == id);
-       return bookList; 
+    public IActionResult GetById(int id){ 
+         GetBookDetailQuery bookDetailQuery = new(_context){BookId = id}; 
+         GetBookDetailQueryResponseViewModel results;
+        try
+        {
+              results = bookDetailQuery.Handle();
+        }
+        catch (Exception ex)
+        {
+            
+            return BadRequest(ex.Message);
+        }
+        
+       return Ok(results);
     }
 
     //[HttpGet]
@@ -55,17 +69,30 @@ public class BookController:ControllerBase
 
 //put o
     [HttpPut("{id}")]
-    public IActionResult UpdateBook(int id,[FromBody] Book updateBook){
-        var book = _context.Books.SingleOrDefault(p =>p.Id == id);
+    public IActionResult UpdateBook(int id,[FromBody] UpdateBookModel updateBook){
+        //var book = _context.Books.SingleOrDefault(p =>p.Id == id);
 
-        if (book is  null){return BadRequest();}
+        //if (book is  null){return BadRequest();}
 
-        book.GenreId = updateBook.GenreId != default ? updateBook.GenreId : book.GenreId;
-        book.Title = updateBook.Title != default ? updateBook.Title : book.Title;
-        book.PublishDate = updateBook.PublishDate != default ? updateBook.PublishDate : book.PublishDate;
-        book.PageCount = updateBook.PageCount != default ? updateBook.PageCount : book.PageCount;
+        //book.GenreId = updateBook.GenreId != default ? updateBook.GenreId : book.GenreId;
+        //book.Title = updateBook.Title != default ? updateBook.Title : book.Title;
+        //book.PublishDate = updateBook.PublishDate != default ? updateBook.PublishDate : book.PublishDate;
+        //book.PageCount = updateBook.PageCount != default ? updateBook.PageCount : book.PageCount;
 
-        _context.SaveChanges();
+        //_context.SaveChanges();
+
+        try
+        {
+            UpdateBookCommand book = new UpdateBookCommand(_context){Id = id,Model = updateBook};
+
+            book.Handle();
+        
+        }
+        catch (Exception ex)
+        {
+            
+            return BadRequest(ex.Message);
+        }
         
         return Ok();
 
@@ -74,12 +101,34 @@ public class BookController:ControllerBase
     [HttpDelete("{id}")]
     public IActionResult DeleteBookById(int id){
 
-        var book = _context.Books.SingleOrDefault(p => p.Id == id);
-        if (book is null){return BadRequest();}
+        try
+        {
+            DeleteBookCommand delete = new(_context){Id = id};
+            delete.Handle();
+        }
+        catch (Exception ex )
+        {
+            
+            return BadRequest(ex.Message );
+        }
+         
 
-        _context.Books.Remove(book);
-        _context.SaveChanges();
         return Ok();
+        
+    }
+
+    private static string HandleExceptions(Action action){
+        try
+        {
+            action.Invoke();
+            return " ";
+        }
+        catch (Exception ex )
+        {
+             return ex.Message;
+            
+        }
+        
     }
 
 }
