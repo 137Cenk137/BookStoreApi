@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.Common;
 using WebApi.DBoperitions;
 namespace WebApi.BookOperations.GetBook;
@@ -5,10 +6,12 @@ namespace WebApi.BookOperations.GetBook;
 public class GetBookQuery
 {
     private readonly BookStoreDBContext _bookStoreDBContext;
+    private readonly IMapper _mapper;
 
     public GetBookQuery(BookStoreDBContext bookStoreDBContext)
     {
         _bookStoreDBContext = bookStoreDBContext;
+        
     }
 
     public List<BooksViewModel> Handle()
@@ -22,6 +25,7 @@ public class GetBookQuery
                 PageCount = book.PageCount,
                 PublishDate = book.PublishDate.Date.ToString("dd/MM/yyy"), 
                 Genre = ((GenreEnum)book.GenreId).ToString()
+                
             });
         }
         return vm;

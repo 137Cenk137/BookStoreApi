@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DBoperitions;
 
 namespace WebApi.BookOperations.CreateBook;
@@ -5,22 +6,26 @@ namespace WebApi.BookOperations.CreateBook;
 public class CreateBookCommand
 {
     private readonly BookStoreDBContext _dbContext;
+    private readonly IMapper _mapper;
 
     public CreateBookModel Model { get; set; }
-    public CreateBookCommand(BookStoreDBContext bookStoreDBContext)
+
+    public CreateBookCommand(BookStoreDBContext bookStoreDBContext,IMapper mapper)
     {
         _dbContext = bookStoreDBContext;
+        _mapper = mapper;
     }
     public void Handle()
     {
         var book = _dbContext.Books.SingleOrDefault(p => p.Title == Model.Title);
         if(book is not null){throw new InvalidOperationException("Kitap Zaten var");}
 
-        book = new Book();
-        book.Title = Model.Title;
-        book.PublishDate = Model.PublishDate;
-        book.PageCount = Model.PageCount;
-        book.GenreId = Model.GenreId;
+        book = _mapper.Map<Book>(Model);// book a dönüstürür
+
+        //book.Title = Model.Title;
+        //book.PublishDate = Model.PublishDate;
+        //book.PageCount = Model.PageCount;
+        //book.GenreId = Model.GenreId;
 
         _dbContext.Books.Add(book);
         _dbContext.SaveChanges();
