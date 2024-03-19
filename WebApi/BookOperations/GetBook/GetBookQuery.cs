@@ -8,26 +8,27 @@ public class GetBookQuery
     private readonly BookStoreDBContext _bookStoreDBContext;
     private readonly IMapper _mapper;
 
-    public GetBookQuery(BookStoreDBContext bookStoreDBContext)
+    public GetBookQuery(BookStoreDBContext bookStoreDBContext, IMapper mapper)
     {
         _bookStoreDBContext = bookStoreDBContext;
+        _mapper = mapper;
         
     }
 
     public List<BooksViewModel> Handle()
     {
         var bookList = _bookStoreDBContext.Books.OrderBy(x => x.Id).ToList<Book>();
-        List<BooksViewModel> vm = new();
-        foreach (var book in bookList)
-        {
-            vm.Add(new BooksViewModel(){
-                Title = book.Title,
-                PageCount = book.PageCount,
-                PublishDate = book.PublishDate.Date.ToString("dd/MM/yyy"), 
-                Genre = ((GenreEnum)book.GenreId).ToString()
-                
-            });
-        }
+        List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList); //new();
+        //foreach (var book in bookList)
+        //{
+        //    vm.Add(new BooksViewModel(){
+        //        Title = book.Title,
+         //       PageCount = book.PageCount,
+        //        PublishDate = book.PublishDate.Date.ToString("dd/MM/yyy"), 
+         //       Genre = ((GenreEnum)book.GenreId).ToString()
+         //       
+         //   });
+        //}//
         return vm;
     }
 }
