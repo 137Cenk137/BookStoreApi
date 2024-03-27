@@ -11,6 +11,8 @@ public class BookStoreDBContext:DbContext
 
     public DbSet<Book> Books{ get; set; }
 
+    public DbSet<Genre> Genres{ get; set; }
+
 
 
 }

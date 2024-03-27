@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WebApi.Common;
 using WebApi.DBoperitions;
 
@@ -17,7 +18,7 @@ public class GetBookDetailQuery
     }
     public GetBookDetailQueryResponseViewModel Handle()
     {
-        var bookList =  _dbContext .Books.SingleOrDefault(p => p.Id == BookId);
+        var bookList =  _dbContext.Books.Include(x => x.Genre).SingleOrDefault(p => p.Id == BookId);
 
         if (bookList == null){throw new InvalidOperationException("KitapBulunamadı");}
         
