@@ -1,5 +1,6 @@
 using AutoMapper;
 using WebApi.DBoperitions;
+namespace WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 
 public class GetAuthorDetailQuery
 {
