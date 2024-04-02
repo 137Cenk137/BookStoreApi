@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using WebApi.DBoperitions;
 
 namespace WebApi.Applications.AuthorOperations.Query.GetAuthor;
@@ -15,7 +16,7 @@ public class GetAuthorQuery
 
     public List<GetAuthorViewModels> Handle()
     {
-        var  authors = _dbContext.Authors.OrderBy(x => x.AuthorId).ToList<Author>();
+        var  authors = _dbContext.Authors.Include(x => x.Books).OrderBy(x => x.AuthorId).ToList<Author>();
         List<GetAuthorViewModels> result =  _mapper.Map<List<GetAuthorViewModels>>(authors);
         return result;
     }
@@ -23,6 +24,7 @@ public class GetAuthorQuery
 
 public class GetAuthorViewModels
 {
+    public string[] Books { get; set; }
     public string Name { get; set;}
     public string SurName { get; set; }
 }

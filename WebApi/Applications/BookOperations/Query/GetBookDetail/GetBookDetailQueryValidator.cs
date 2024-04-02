@@ -8,7 +8,7 @@ namespace WebApi.BookOperations.GetBookDetail;
 public class GetBookDetailQueryValidator : AbstractValidator<GetBookDetailQuery>
 {
     
-    public GetBookDetailQueryValidator(BookStoreDBContext dbContext)
+    public GetBookDetailQueryValidator(IBookStoreDBContext dbContext)
     {
 
         RuleFor(query => query.BookId).NotEmpty().GreaterThan(0).LessThan(dbContext.Books.Count()+1);

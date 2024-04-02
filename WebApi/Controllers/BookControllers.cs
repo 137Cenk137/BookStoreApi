@@ -15,9 +15,9 @@ namespace WebApi.Controllers;
 [Route("[controller]s")]
 public class BookController:ControllerBase
 {
-    private  readonly BookStoreDBContext _context;//readonly yapılar constructor da set edilen degiskeni bir daha set edilmesini önler yanı bir kere set edilebilir  
+    private  readonly IBookStoreDBContext _context;//readonly yapılar constructor da set edilen degiskeni bir daha set edilmesini önler yanı bir kere set edilebilir  
     private readonly IMapper _mapper;
-    public BookController(BookStoreDBContext context, IMapper mapper)
+    public BookController(IBookStoreDBContext context, IMapper mapper)
     {
         _context = context; 
         _mapper = mapper;

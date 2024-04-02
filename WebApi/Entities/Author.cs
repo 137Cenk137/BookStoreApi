@@ -9,5 +9,6 @@ public class Author
     public string Name { get; set;}
     public string SurName { get; set; }
     public DateTime Birthdate { get; set; }
+    public ICollection<Book> Books { get; set; }
 
 }

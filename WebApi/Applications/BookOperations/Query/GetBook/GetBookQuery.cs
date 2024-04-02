@@ -6,10 +6,10 @@ namespace WebApi.BookOperations.GetBook;
 
 public class GetBookQuery
 {
-    private readonly BookStoreDBContext _bookStoreDBContext;
+    private readonly IBookStoreDBContext _bookStoreDBContext;
     private readonly IMapper _mapper;
 
-    public GetBookQuery(BookStoreDBContext bookStoreDBContext, IMapper mapper)
+    public GetBookQuery(IBookStoreDBContext bookStoreDBContext, IMapper mapper)
     {
         _bookStoreDBContext = bookStoreDBContext;
         _mapper = mapper;
@@ -18,7 +18,7 @@ public class GetBookQuery
 
     public List<BooksViewModel> Handle()
     {
-        var bookList = _bookStoreDBContext.Books.Include(x => x.Genre).OrderBy(x => x.Id).ToList<Book>();
+        var bookList = _bookStoreDBContext.Books.Include(x => x.Genre).Include(x => x.Author).OrderBy(x => x.Id).ToList<Book>();
         List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList); //new();
         //foreach (var book in bookList)
         //{
@@ -40,6 +40,6 @@ public  class BooksViewModel
     public string Genre { get; set; }
 
     public int PageCount { get; set; }
-
+    public string  Author  { get; set; }
     public string PublishDate { get; set; }
 } 
