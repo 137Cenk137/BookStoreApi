@@ -3,6 +3,7 @@ using FluentAssertions;
 using TestsSetup;
 using WebApi.BookOperations.UpdateBook;
 using WebApi.DBoperitions;
+using Xunit;
 
 namespace Tests.Applications.BookOperations.Commands.UpdateBook;
 

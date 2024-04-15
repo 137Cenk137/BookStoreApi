@@ -6,6 +6,8 @@ using TestsSetup;
 using WebApi;
 using WebApi.BookOperations.DeleteBook;
 using WebApi.DBoperitions;
+using Xunit;
+
 
 namespace Tests.Applications.BookOperations.Commands.CreateBook;
 

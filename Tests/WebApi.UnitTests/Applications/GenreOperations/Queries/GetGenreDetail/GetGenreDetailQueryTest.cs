@@ -3,6 +3,7 @@ using TestsSetup;
 using WebApi.Applications.AuthorOperations.Query.GetAuthorDetail;
 using WebApi.Applications.GenreOperations.Query.GetGenres;
 using WebApi.DBoperitions;
+using Xunit;
 
 namespace Tests.WebApi.UnitTests.Applications.GenreOperations.Queries.GetGenreDetail;
 

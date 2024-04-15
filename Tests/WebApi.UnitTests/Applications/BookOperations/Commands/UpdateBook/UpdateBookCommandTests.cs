@@ -6,6 +6,7 @@ using WebApi;
 using WebApi.BookOperations.GetBookDetail;
 using WebApi.BookOperations.UpdateBook;
 using WebApi.DBoperitions;
+using Xunit;
 
 namespace Tests.Applications.BookOperations.Commands.UpdateBook;
 

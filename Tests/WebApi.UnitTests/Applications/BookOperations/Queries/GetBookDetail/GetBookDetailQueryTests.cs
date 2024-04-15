@@ -4,6 +4,8 @@ using FluentAssertions;
 using TestsSetup;
 using WebApi.BookOperations.GetBookDetail;
 using WebApi.DBoperitions;
+using Xunit;
+
 
 namespace Tests.Applications.BookOperations.Queries.GetBookDetail;
 

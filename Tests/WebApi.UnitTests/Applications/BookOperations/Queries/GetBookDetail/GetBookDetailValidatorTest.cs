@@ -3,6 +3,8 @@ using TestsSetup;
 using WebApi.BookOperations.GetBookDetail;
 using WebApi.DBoperitions;
 
+using Xunit;
+
 namespace Tests.Applications.BookOperations.Queries.GetBookDetail;
 public class GetBookDetailValidatorTest : IClassFixture<CommanTestFixture>
 {

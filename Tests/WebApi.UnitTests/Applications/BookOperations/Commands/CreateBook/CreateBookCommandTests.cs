@@ -6,6 +6,7 @@ using WebApi;
 using WebApi.Applications.AuthorOperations.Command.CreateAuthor;
 using WebApi.BookOperations.CreateBook;
 using WebApi.DBoperitions;
+using Xunit;
 
 namespace Tests.Applications.BookOperations.Commands.CreateBook;
  
