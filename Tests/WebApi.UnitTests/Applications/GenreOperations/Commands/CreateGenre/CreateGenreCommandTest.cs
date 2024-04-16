@@ -5,7 +5,7 @@ using TestsSetup;
 using WebApi.Applications.GenreOperations.Commands.CreateGenre;
 using WebApi.DBoperitions;
 using Xunit;
-namespace Tests.WebApi.UnitTests.Applications.GenreOperations.Commands.Crea;
+namespace Tests.WebApi.UnitTests.Applications.GenreOperations.Commands.CreateGenre;
  
 public class CreateGenreCommandTest : IClassFixture<CommanTestFixture>
 {

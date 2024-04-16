@@ -5,3 +5,10 @@ WebApi/appsettings.Development.json
 WebApi/WebApi.csproj
 WebApi/WebApi.http
 WebApi/bin/Debug
+.vscode
+vs
+Tests/WebApi.UnitTests/bin
+Tests/WebApi.UnitTests/obj
+Tests/WebApi.UnitTests/WebApi.UnitTests.csproj
+WebApi/obj
+WebApi/Properties
