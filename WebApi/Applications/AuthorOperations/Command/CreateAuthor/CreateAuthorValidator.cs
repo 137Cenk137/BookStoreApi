@@ -7,7 +7,7 @@ public class CreateAuthorValidator: AbstractValidator<CreateAuthorCommand>
     {
         RuleFor(x=>x.Model.Name).NotEmpty().MinimumLength(4);
         RuleFor(x=>x.Model.SurName).NotEmpty().MinimumLength(4);
-        RuleFor(x=>x.Model.Birthdate).NotEmpty().NotEqual(DateTime.Now);
+        RuleFor(x=>x.Model.Birthdate).NotEmpty().LessThan(DateTime.Now.Date);
 
     }
 }
