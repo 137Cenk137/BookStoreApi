@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using WebApi.DBoperitions;
 using WebApi.MiddleWare;
 using WebApi.Services;
+using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<BookStoreDBContext>(options => options.UseInMemoryDatabase(databaseName:"BookStoreDB"));
+builder.Services.AddDbContext<BookStoreDBContext>(options => {
+    // options.UseInMemoryDatabase(databaseName:"BookStoreDB");
+    options.UseSqlite("Data Source=./testtest.db");
+});
 builder.Services.AddScoped<IBookStoreDBContext,BookStoreDBContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddSingleton<ILoggerService,DbLogger>();
