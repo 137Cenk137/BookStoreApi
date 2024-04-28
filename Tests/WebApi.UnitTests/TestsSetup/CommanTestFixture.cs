@@ -16,6 +16,7 @@ public class CommanTestFixture
       Context.Database.EnsureCreated(); 
       Context.AddBooks();
       Context.AddGenres();
+      Context.AddAuthors();
       Context.SaveChanges();
 
       Mapper = new MapperConfiguration ( cfg => {cfg.AddProfile<MappingProfile>();}).CreateMapper();
