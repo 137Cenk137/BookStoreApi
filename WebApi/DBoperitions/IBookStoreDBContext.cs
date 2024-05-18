@@ -9,6 +9,6 @@ public interface IBookStoreDBContext
     DbSet<Genre> Genres { get; set; }
     DbSet<Author>   Authors { get; set; }
 
-    DbSet<User> users{ get; set; }
+    DbSet<User> Users{ get; set; }
     int SaveChanges(); 
 }

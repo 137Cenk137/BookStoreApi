@@ -17,7 +17,7 @@ public class CreateAuthorCommand
     public void Handle()
     {
 
-        Author author = _dbContext.Authors.SingleOrDefault(x => x.Name.ToLower() == Model.Name.ToLower());
+        Author author =  _dbContext.Authors.SingleOrDefault(x => x.Name.ToLower() == Model.Name.ToLower());
 
         if (author is not null)
         {throw new InvalidOperationException("Bu yazar zaten var");}

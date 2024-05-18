@@ -32,8 +32,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<BookStoreDBContext>(options => {
-    // options.UseInMemoryDatabase(databaseName:"BookStoreDB");
-    options.UseSqlite("Data Source=./testtest.db");
+    options.UseInMemoryDatabase(databaseName:"BookStoreDB");
+    //options.UseSqlite("Data Source=./testtest.db");
 });
 builder.Services.AddScoped<IBookStoreDBContext,BookStoreDBContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

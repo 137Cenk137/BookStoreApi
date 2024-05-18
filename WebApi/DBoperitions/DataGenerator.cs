@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Entities;
 
 namespace WebApi.DBoperitions;
 public class DataGenerator{
@@ -25,7 +26,7 @@ public class DataGenerator{
 
             context.Books.AttachRange(bookList);
             context.Books.AttachRange(bookList2);
-
+            
             context.Authors.AddRange(
                 new Author(){Name = "Mustafa", SurName = "Kutlu",Birthdate = new DateTime(1999,01,12),Books = bookList},
                 new Author(){Name = "Sabahattin",SurName = "Ali",Birthdate = new DateTime(1907,02,25),Books = bookList2}
